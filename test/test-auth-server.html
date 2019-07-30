@@ -15,15 +15,13 @@
 
             <script type="text/javascript">
                 const getTokenElement = document.getElementById('getToken');
-                //const getRefreshTokenElement = document.getElementById('getNewToken')
-
                 getTokenElement.onclick = function() {
                     const codeElement = document.getElementById('code');
                     const resultElement = document.getElementById('result');
                     const codeValue = codeElement.value;
-
+console.log('codeValue:',codeValue);
                     const lambdaURL = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/token/' + codeValue;
-
+console.log('lambdaURL:',lambdaURL);
                     fetch(lambdaURL)
                     .then(function(response) {
                         return response.json();
@@ -32,12 +30,14 @@
                         resultElement.innerText = JSON.stringify(json);
                     });
                 }
-               /* getRefreshTokenElement.onclick = () => {
+                
+                const getRefreshTokenElement = document.getElementById('getNewToken')
+                getRefreshTokenElement.onclick = () => {
                     const codeElement = document.getElementById('refreshToken');
                     const resultElement = document.getElementById('refreshResult');
                     const codeValue = codeElement.value;
                  
-                    const lambdaURL = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/token/' + codeValue;
+                    const lambdaURL = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/refreshtoken/' + codeValue;
 
                     fetch(lambdaURL)
                     .then(function(response) {
@@ -47,8 +47,8 @@
                         resultElement.innerText = JSON.stringify(json);
                     });
                 }
-                */
-                    </script>
+            
+            </script>
         </body>
     </head>
 </html>

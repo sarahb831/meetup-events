@@ -15,3 +15,16 @@ functions:
       - http:
           method: get
           path: api/token/{code}
+          cors:
+            origins:
+              -  "http://localhost:8080"
+  getRefreshToken:
+    handler: handler.getAccessToken
+    events:
+      - http:
+          method: get
+          path: api/refreshtoken/{code}
+          cors:
+            origins:
+              -  "http://localhost:8080"
+  
