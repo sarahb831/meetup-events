@@ -31,7 +31,7 @@ module.exports.getRefreshToken =async (event) => {
 
   const MEETUP_OAUTH_URL = 'https://secure.meetup.com/oauth2/access'
   + '?client_id=1pcniov4vgu7t6ni21bgqi5p2t'
-  + '&client_secret=6rn3iu84a6g3397hifrqv1dpsa'
+  + '&client_secret=6rn3iu84a6g3397hifrqv1dpsa'x 
   + '&grant_type=refresh_token'
   + '&refresh_token=' + event.pathParameters.code;
   const info = await axios.post(MEETUP_OAUTH_URL);
