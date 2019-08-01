@@ -1,7 +1,6 @@
 import React from  'react';
 import { shallow } from 'enzyme';
 import CitySearch from  '../CitySearch';
-import { testNameToKey } from 'jest-snapshot/build/utils';
 
 describe('<CitySearch /> component', () => {
 
