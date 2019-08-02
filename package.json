@@ -16,6 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cov": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
@@ -39,5 +40,15 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "gh-pages": "^2.0.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/serviceWorker.js",
+      "!**/index.js",
+      "!**/node_modules/**",
+      "!**/auth-server/**",
+      "!**/coverage/**"
+    ]
   }
 }
