@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getSuggestions } from './api.js';
 
 class CitySearch extends Component {
     
@@ -10,10 +11,12 @@ class CitySearch extends Component {
     handleInputChanges = (event) => {
         const value = event.target.value;
         this.setState({ query: value });
+        getSuggestions(value).then(suggestions => this.setState({ suggestions }));
     }
 
-    handleItemClicked = (value) => {
+    handleItemClicked = (value, lat, lon) => {
         this.setState( { query: value });
+        this.props.updateEvents(lat, lon);
     }
    
     render() {
@@ -27,10 +30,8 @@ class CitySearch extends Component {
                 />
                 <ul className="suggestions">
                     {this.state.suggestions.map(city =>
-                        <li key={city.name_string}
-                            onClick = {() => this.handleItemClicked(city.name_string)}
-                        >
-                            {city.name_string}
+                        <li key={city.name_string} onClick={() => this.handleItemClicked(city.name_string, city.lat, city.lon)}>
+                        {city.name_string}
                         </li>
                     )}
                 </ul>
