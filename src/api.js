@@ -59,12 +59,12 @@ async function getEvents(lat, lon) {
 
 async function getOrRenewAccessToken(type, key) {
     let url;
-    if (type == 'get') {
+    if (type === 'get') {
         //Lambda endpoint to get token by authorization code
         url = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/token/'
             + key;
     }
-    else if (type == 'renew') {
+    else if (type === 'renew') {
         // Lambda endpoint to get token by refresh token
         url = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/refreshtoken/'
             + key;
