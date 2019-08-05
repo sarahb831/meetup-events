@@ -55,6 +55,52 @@ const mockEventsSingle = {
         description: '<p>Uncle Bobs videos are the classics of the genre.',
         visibility: 'public',
         member_pay_fee: false
+    },
+    {
+        created: 1563286531000,
+        duration: 10800000,
+        id: '263193897',
+        name: 'Tour Munich',
+        rsvp_limit: 150,
+        date_in_series_pattern: false,
+        status: 'upcoming',
+        time: 1565715600000,
+        local_date: '2019-08-14',
+        local_time: '19:00',
+        updated: 1563354007000,
+        utc_offset: 7200000,
+        waitlist_count: 0,
+        yes_rsvp_count: 134,
+        venue: {
+            id: 26052903,
+            name: 'Rohde & Schwarz GmbH & Co. KG',
+            lat: 48.127593994140625,
+            lon: 11.612282752990723,
+            repinned: true,
+            address_1: 'Mühldorfstraße 15',
+            city: 'München',
+            country: 'de',
+            localized_country_name: 'Germany'
+        },
+        group: {
+            created: 1411685347000,
+            name: 'Munich Tour Community',
+            id: 17214922,
+            join_mode: 'open',
+            lat: 48.13999938964844,
+            lon: 11.579999923706055,
+            urlname: 'munich-tour-community',
+            who: 'Software Crafters',
+            localized_location: 'München, Germany',
+            state: '',
+            country: 'de',
+            region: 'en_US',
+            timezone: 'Europe/Berlin'
+        },
+        link: 'https://www.meetup.com/munich-software-craft-community/events/263193896/',
+        description: '<p>Take a tour around Munich and see the sites.',
+        visibility: 'public',
+        member_pay_fee: false
     }
 ]};
 
