@@ -17,7 +17,7 @@ class Event extends Component {
                 <p className="name">{(event && event.name) ? event.name : null}</p>
                 <p className="local_time">{(event && event.local_time) ? event.local_time : null}</p>
                 <p className="local_date">{(event && event.local_date) ? event.local_date : null}</p>
-                <p className="groupName">{(event && event.group.name) ? event.group.name : null}</p>
+                <p className="groupName">{(event && event.group && event.group.name) ? event.group.name : null}</p>
                 <p className="yes_rsvp_count">{(event && event.yes_rsvp_count) ? event.yes_rsvp_count : null}</p>
            
                 {this.state.showDetails &&
@@ -29,7 +29,9 @@ class Event extends Component {
                     <p className="link">{(event && event.link) ? event.link : null}</p>
                 </div>
                 }
-                <button className="details-button"  onClick = {this.handleDetailsButtonClicked}>{this.state.showDetails? 'Hide Details' : 'Show Details' }</button>
+                <button className="details-button"  onClick = {this.handleDetailsButtonClicked}>
+                    { this.state.showDetails ? 'Hide Details' : 'Show Details' }
+                </button>
             </div>
         );
     }
