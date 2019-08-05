@@ -81,9 +81,9 @@ async function getOrRenewAccessToken(type, key) {
     //return access_token
     return tokenInfo.data.access_token;
     
-}
+};
 
-getAccessToken() {
+function getAccessToken() {
     const accessToken = localStorage.getItem('access_token');
 
     if (!accessToken) {
@@ -105,6 +105,6 @@ getAccessToken() {
     // if access_token is expired try to renew it using refresh_token
     const refreshToken = localStorage.getItem('refresh_token');
     return getOrNewAccessToken('renew', refreshToken);
-}
+};
 
 export { getSuggestions, getEvents };
