@@ -4,7 +4,7 @@ import { getSuggestions } from './api.js';
 class CitySearch extends Component {
     
     state = {
-        query: 'Munich',
+        query: '',
         suggestions: [],
     }
 
@@ -15,7 +15,7 @@ class CitySearch extends Component {
     }
 
     handleItemClicked = (value, lat, lon) => {
-        this.setState( { query: value });
+        this.setState( { query: value, suggestions: [] });
         this.props.updateEvents(lat, lon);
     }
    
@@ -25,6 +25,7 @@ class CitySearch extends Component {
                 <input
                     type="text"
                     className="city"
+                    id="city-input"
                     value = {this.state.query}
                     onChange = {this.handleInputChanges}
                 />
