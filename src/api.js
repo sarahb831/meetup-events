@@ -38,9 +38,16 @@ async function getSuggestions(query) {
     return [];
 }
 
-async function getEvents(lat, lon) {
+async function getEvents(lat=null, lon=null, numberToDisplay) {
     if (window.location.href.startsWith('http://localhost')) {
-        return mockEventsSingle.events;
+        console.log('getEvents local, numberToDisplay:', numberToDisplay);
+        if (mockEventsSingle.events.length < numberToDisplay) {
+            console.log('returning mockEventsSingle, no change')
+            return mockEventsSingle.events;
+        }
+        let partialEventsList = mockEventsSingle.events.slice(0, numberToDisplay);
+        console.log('returning partialEventsList with length ', numberToDisplay);
+        return partialEventsList;
     }
 
     const token = await getAccessToken();
@@ -48,8 +55,14 @@ async function getEvents(lat, lon) {
         let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
             + '&access_token=' + token;
             //use optional lon and lat if have them
-        if (lat && lon) {
-            url += '&lat=' + lat + '&lon=' + lon;
+        if (lon) {
+            url += '&lon=' + lon;
+        }
+        if (numberToDisplay) {
+            url += '&page=' + numberToDisplay;
+        }
+        if (lat) {
+            url += '&lat=' + lat;
         }
         const result = await axios.get(url);
         return result.data.events;

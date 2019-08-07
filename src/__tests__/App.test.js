@@ -39,6 +39,49 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
+  /*******
+   * 
+   */
+  test('change state after get number of events to display', () => {
+    const AppWrapper = mount(<App />);
+    console.log('in change state');
+    AppWrapper.instance().updateNumberOfEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const eventObject = { target: { value: 3}};
+    console.log('in change state, calling handleInputChanges() with value of 3');
+    NumberOfEventsWrapper.instance().handleInputChanges(eventObject);
+    expect(AppWrapper.instance().updateNumberOfEvents).toHaveBeenCalledWith(3);
+/****/    expect(AppWrapper.state('numberOfEvents')).toBe(3);
+  });
+
+  /*******
+   * 
+   */
+  test('get and display specified number of events', async() => {
+    console.log('in test get and display...');
+    const AppWrapper = mount(<App />);
+    console.log('assigning jest()');
+    AppWrapper.instance().updateNumberOfEvents = jest.fn();
+    console.log('calling forceUpdate');
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const eventObject = { target: { value: 2 }};
+    console.log('calling handleInputChanges() with eventObject');
+    NumberOfEventsWrapper.instance().handleInputChanges(eventObject);
+    console.log('checking state of number of Events');
+/****/    expect(AppWrapper.state('numberOfEvents')).toBe(2);
+    console.log('checking EventListWrapper and Event now');
+    //const EventListWrapper = AppWrapper.find(EventList);
+    //expect(EventListWrapper.find('Event')).toHaveLength(2);
+    expect(AppWrapper.find('Event')).toHaveLength(2);
+    console.log('calling 2 expects()');
+    expect(AppWrapper.instance().updateNumberOfEvents).toHaveBeenCalledTimes(1);
+    expect(AppWrapper.instance().updateNumberOfEvents).toHaveBeenCalledWith(2);
+
+    AppWrapper.unmount();
+  });
+
   test('change state after get list of events', async () => {
       const AppWrapper = shallow(<App />);
       AppWrapper.instance().updateEvents(1.1, 1.2);
@@ -51,6 +94,14 @@ describe('<App /> integration', () => {
       AppWrapper.setState({'events':[ {id:1}, {id:2}, {id:3}, {id: 4} ]});
       expect(AppWrapper.find('Event')).toHaveLength(4);
       AppWrapper.unmount();
+    });
+
+    test('change state when number input changes',() => {
+      const AppWrapper = mount(<App />);
+      const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      const eventObject = { target: { value: 2}};
+      NumberOfEventsWrapper.find('.number-input').simulate('change', eventObject);
+      expect(AppWrapper.state('numberOfEvents')).toBe(2);
     });
 
   });

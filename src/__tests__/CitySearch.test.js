@@ -62,6 +62,7 @@ describe('<CitySearch /> component', () => {
         expect(CitySearchWrapper.state('query')).toBe('Munich, Germany');
         expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(0);
     });
+
 });
 
 describe('<CitySearch /> integration', () => {
