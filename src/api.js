@@ -40,13 +40,10 @@ async function getSuggestions(query) {
 
 async function getEvents(lat=null, lon=null, numberToDisplay) {
     if (window.location.href.startsWith('http://localhost')) {
-        console.log('getEvents local, numberToDisplay:', numberToDisplay);
         if (mockEventsSingle.events.length < numberToDisplay) {
-            console.log('returning mockEventsSingle, no change')
-            return mockEventsSingle.events;
+        return mockEventsSingle.events;
         }
         let partialEventsList = mockEventsSingle.events.slice(0, numberToDisplay);
-        console.log('returning partialEventsList with length ', numberToDisplay);
         return partialEventsList;
     }
 

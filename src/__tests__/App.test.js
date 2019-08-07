@@ -39,45 +39,30 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  /*******
-   * 
-   */
   test('change state after get number of events to display', () => {
     const AppWrapper = mount(<App />);
-    console.log('in change state');
-    AppWrapper.instance().updateNumberOfEvents = jest.fn();
+    const spy = jest.spyOn(AppWrapper.instance(), 'updateNumberOfEvents');
+    //AppWrapper.instance().updateNumberOfEvents = jest.fn();
     AppWrapper.instance().forceUpdate();
-    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const NumberOfEventsWrapper = AppWrapper.find('.number-input');
     const eventObject = { target: { value: 3}};
-    console.log('in change state, calling handleInputChanges() with value of 3');
-    NumberOfEventsWrapper.instance().handleInputChanges(eventObject);
-    expect(AppWrapper.instance().updateNumberOfEvents).toHaveBeenCalledWith(3);
-/****/    expect(AppWrapper.state('numberOfEvents')).toBe(3);
+    NumberOfEventsWrapper.simulate('change', eventObject);
+    expect(spy).toHaveBeenCalledWith(3);
+    expect(AppWrapper.state('numberOfEvents')).toBe(3);
   });
 
-  /*******
-   * 
-   */
   test('get and display specified number of events', async() => {
-    console.log('in test get and display...');
     const AppWrapper = mount(<App />);
-    console.log('assigning jest()');
-    AppWrapper.instance().updateNumberOfEvents = jest.fn();
-    console.log('calling forceUpdate');
+    const spy = jest.spyOn(AppWrapper.instance(), 'updateNumberOfEvents');
     AppWrapper.instance().forceUpdate();
-    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const NumberOfEventsWrapper = AppWrapper.find('.number-input');
     const eventObject = { target: { value: 2 }};
-    console.log('calling handleInputChanges() with eventObject');
-    NumberOfEventsWrapper.instance().handleInputChanges(eventObject);
-    console.log('checking state of number of Events');
-/****/    expect(AppWrapper.state('numberOfEvents')).toBe(2);
-    console.log('checking EventListWrapper and Event now');
-    //const EventListWrapper = AppWrapper.find(EventList);
-    //expect(EventListWrapper.find('Event')).toHaveLength(2);
+    await NumberOfEventsWrapper.simulate('change', eventObject);
+    AppWrapper.setState({numberOfEvents: 2});
+    expect(AppWrapper.state('numberOfEvents')).toBe(2);
     expect(AppWrapper.find('Event')).toHaveLength(2);
-    console.log('calling 2 expects()');
-    expect(AppWrapper.instance().updateNumberOfEvents).toHaveBeenCalledTimes(1);
-    expect(AppWrapper.instance().updateNumberOfEvents).toHaveBeenCalledWith(2);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(2);
 
     AppWrapper.unmount();
   });

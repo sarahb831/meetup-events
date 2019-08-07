@@ -6,13 +6,12 @@ class NumberOfEvents extends Component {
         numberOfEvents: 32,
     }
   
-    handleInputChanges = (event) => {
+    handleInputChanges = async (event) => {
+        event.preventDefault();
         let value = event.target.value;
         value = isNaN(value) ? this.state.numberOfEvents : value;
-        console.log('in handleInputChanges(), value=',value);
         this.setState({ numberOfEvents: value });
-        console.log('in handleInputChanges, calling this.props.updateNumberOfEvents() with value of ', value);
-        this.props.updateNumberOfEvents(value);
+        await this.props.updateNumberOfEvents(value);
     }
 
     render() {

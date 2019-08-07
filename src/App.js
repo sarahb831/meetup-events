@@ -4,7 +4,7 @@ import EventList from  './EventList';
 import CitySearch from  './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from  './api';
-import Axios from 'axios';
+import axios from 'axios';
 
 class App extends Component {
    
@@ -15,26 +15,22 @@ class App extends Component {
     lon: null
 }
 
-  componentDidMount() {
-    console.log('in componentDidMount(), this.state.numberOfEvents=', this.state.numberOfEvents);
-    this.updateEvents(this.state.lat, this.state.lon);
+  async componentDidMount() {
+    await this.updateEvents(this.state.lat, this.state.lon);
   }
 
   componentWillUnmount() {
-    console.log('in componentWillUnmount()');
-    Axios.CancelToken.source().cancel('API is cancelled');
+    axios.CancelToken.source().cancel('API is cancelled');
   }
 
-  updateEvents = (lat, lon) => {
+  updateEvents = async (lat, lon) => {
     this.setState( { lat, lon });
-    getEvents(lat, lon, this.state.numberOfEvents).then(events => this.setState({ events }));
+    await getEvents(lat, lon, this.state.numberOfEvents).then(events => this.setState({ events }));
   };
 
-  updateNumberOfEvents = (numberOfEvents) => {
-    console.log('in updateNumberOfEvents(), value=',numberOfEvents, ' this.state.numberOfEvents before setState is ',this.state.numberOfEvents);
+  updateNumberOfEvents = async (numberOfEvents) => {
     this.setState({ numberOfEvents });
-    console.log('in updateNumberOfEvents, after setState numberOfEvents is ',numberOfEvents, ' and this.state.numberOfEvents=', this.state.numberOfEvents);
-    getEvents(this.state.lat, this.state.lon, numberOfEvents).then(events => this.setState({ events }));
+    await getEvents(this.state.lat, this.state.lon, numberOfEvents).then(events => this.setState({ events }));
   }
 
   render() {
