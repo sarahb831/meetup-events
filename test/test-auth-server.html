@@ -19,9 +19,7 @@
                     const codeElement = document.getElementById('code');
                     const resultElement = document.getElementById('result');
                     const codeValue = codeElement.value;
-console.log('codeValue:',codeValue);
                     const lambdaURL = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/token/' + codeValue;
-console.log('lambdaURL:',lambdaURL);
                     fetch(lambdaURL)
                     .then(function(response) {
                         return response.json();

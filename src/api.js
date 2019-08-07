@@ -38,9 +38,13 @@ async function getSuggestions(query) {
     return [];
 }
 
-async function getEvents(lat, lon) {
+async function getEvents(lat=null, lon=null, numberToDisplay) {
     if (window.location.href.startsWith('http://localhost')) {
+        if (mockEventsSingle.events.length < numberToDisplay) {
         return mockEventsSingle.events;
+        }
+        let partialEventsList = mockEventsSingle.events.slice(0, numberToDisplay);
+        return partialEventsList;
     }
 
     const token = await getAccessToken();
@@ -48,8 +52,14 @@ async function getEvents(lat, lon) {
         let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
             + '&access_token=' + token;
             //use optional lon and lat if have them
-        if (lat && lon) {
-            url += '&lat=' + lat + '&lon=' + lon;
+        if (lon) {
+            url += '&lon=' + lon;
+        }
+        if (numberToDisplay) {
+            url += '&page=' + numberToDisplay;
+        }
+        if (lat) {
+            url += '&lat=' + lat;
         }
         const result = await axios.get(url);
         return result.data.events;
@@ -59,12 +69,12 @@ async function getEvents(lat, lon) {
 
 async function getOrRenewAccessToken(type, key) {
     let url;
-    if (type == 'get') {
+    if (type === 'get') {
         //Lambda endpoint to get token by authorization code
         url = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/token/'
             + key;
     }
-    else if (type == 'renew') {
+    else if (type === 'renew') {
         // Lambda endpoint to get token by refresh token
         url = 'https://woyjybx9i4.execute-api.us-west-1.amazonaws.com/dev/api/refreshtoken/'
             + key;
@@ -104,7 +114,7 @@ function getAccessToken() {
 
     // if access_token is expired try to renew it using refresh_token
     const refreshToken = localStorage.getItem('refresh_token');
-    return getOrNewAccessToken('renew', refreshToken);
+    return getOrRenewAccessToken('renew', refreshToken);
 };
 
 export { getSuggestions, getEvents };

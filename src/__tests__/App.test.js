@@ -39,6 +39,34 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
+  test('change state after get number of events to display', () => {
+    const AppWrapper = mount(<App />);
+    const spy = jest.spyOn(AppWrapper.instance(), 'updateNumberOfEvents');
+    //AppWrapper.instance().updateNumberOfEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper = AppWrapper.find('.number-input');
+    const eventObject = { target: { value: 3}};
+    NumberOfEventsWrapper.simulate('change', eventObject);
+    expect(spy).toHaveBeenCalledWith(3);
+    expect(AppWrapper.state('numberOfEvents')).toBe(3);
+  });
+
+  test('get and display specified number of events', async() => {
+    const AppWrapper = mount(<App />);
+    const spy = jest.spyOn(AppWrapper.instance(), 'updateNumberOfEvents');
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper = AppWrapper.find('.number-input');
+    const eventObject = { target: { value: 2 }};
+    await NumberOfEventsWrapper.simulate('change', eventObject);
+    AppWrapper.setState({numberOfEvents: 2});
+    expect(AppWrapper.state('numberOfEvents')).toBe(2);
+    expect(AppWrapper.find('Event')).toHaveLength(2);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(2);
+
+    AppWrapper.unmount();
+  });
+
   test('change state after get list of events', async () => {
       const AppWrapper = shallow(<App />);
       AppWrapper.instance().updateEvents(1.1, 1.2);
@@ -51,6 +79,14 @@ describe('<App /> integration', () => {
       AppWrapper.setState({'events':[ {id:1}, {id:2}, {id:3}, {id: 4} ]});
       expect(AppWrapper.find('Event')).toHaveLength(4);
       AppWrapper.unmount();
+    });
+
+    test('change state when number input changes',() => {
+      const AppWrapper = mount(<App />);
+      const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      const eventObject = { target: { value: 2}};
+      NumberOfEventsWrapper.find('.number-input').simulate('change', eventObject);
+      expect(AppWrapper.state('numberOfEvents')).toBe(2);
     });
 
   });

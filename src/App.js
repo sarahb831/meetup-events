@@ -4,22 +4,40 @@ import EventList from  './EventList';
 import CitySearch from  './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from  './api';
+import axios from 'axios';
 
 class App extends Component {
    
   state = {
     events: [],
+    numberOfEvents: 32,
+    lat: null,
+    lon: null
 }
 
-  updateEvents = (lat, lon) => {
-    getEvents(lat, lon).then(events => this.setState({ events }));
+  async componentDidMount() {
+    await this.updateEvents(this.state.lat, this.state.lon);
+  }
+
+  componentWillUnmount() {
+    axios.CancelToken.source().cancel('API is cancelled');
+  }
+
+  updateEvents = async (lat, lon) => {
+    this.setState( { lat, lon });
+    await getEvents(lat, lon, this.state.numberOfEvents).then(events => this.setState({ events }));
   };
+
+  updateNumberOfEvents = async (numberOfEvents) => {
+    this.setState({ numberOfEvents });
+    await getEvents(this.state.lat, this.state.lon, numberOfEvents).then(events => this.setState({ events }));
+  }
 
   render() {
     return (
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents />
+        <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
         <EventList events={this.state.events}/>
       </div>
     );
