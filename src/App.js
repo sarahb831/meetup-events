@@ -5,6 +5,7 @@ import CitySearch from  './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from  './api';
 import axios from 'axios';
+import Navbar from 'react-bootstrap/Navbar';
 
 class App extends Component {
    
@@ -36,8 +37,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
+        <Navbar bg="dark" variant="dark" fixed="top"
+          className="sticky-navbar">
+            <Navbar.Brand>Meetup Events</Navbar.Brand>
+            <br></br>
+        </Navbar>
+       
+          <CitySearch updateEvents={this.updateEvents} />
+        <br></br>
+      
+          <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
+       
         <EventList events={this.state.events}/>
       </div>
     );
