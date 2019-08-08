@@ -21,6 +21,7 @@ class NumberOfEvents extends Component {
                   <input
                     type="text"
                     className="number-input"
+                    placeholder="Number of Events"
                     id="number-input"
                     value = {this.props.numberOfEvents}
                     onChange = {this.handleInputChanges}
