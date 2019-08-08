@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getSuggestions } from './api.js';
 
+
 class CitySearch extends Component {
     
     state = {
@@ -25,6 +26,7 @@ class CitySearch extends Component {
                 <input
                     type="text"
                     className="city"
+                    placeholder="City"
                     id="city-input"
                     value = {this.state.query}
                     onChange = {this.handleInputChanges}
