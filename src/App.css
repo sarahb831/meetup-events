@@ -34,6 +34,7 @@ input[type="text"], input[type="number"] {
 .CitySearch {
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
 }
 
 .suggestions {
@@ -101,4 +102,8 @@ input[type="text"], input[type="number"] {
   width: 80px;
   margin: 20px 0 50px;
   text-align: right;
+}
+
+.EventList {
+  margin-top: 60px;
 }

@@ -17,6 +17,7 @@ class NumberOfEvents extends Component {
     render() {
         return (
             <div className="NumberOfEvents">
+                <span>Show </span>
                   <input
                     type="text"
                     className="number-input"
@@ -24,6 +25,7 @@ class NumberOfEvents extends Component {
                     value = {this.props.numberOfEvents}
                     onChange = {this.handleInputChanges}
                 />
+                <span> Events</span>
             </div>
         );
     }

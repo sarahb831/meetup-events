@@ -14,11 +14,15 @@ class Event extends Component {
         const { event } = this.props;
         return (
             <div className="Event">
-                <p className="name">{(event && event.name) ? event.name : null}</p>
-                <p className="local_time">{(event && event.local_time) ? event.local_time : null}</p>
-                <p className="local_date">{(event && event.local_date) ? event.local_date : null}</p>
-                <p className="groupName">{(event && event.group && event.group.name) ? event.group.name : null}</p>
-                <p className="yes_rsvp_count">{(event && event.yes_rsvp_count) ? event.yes_rsvp_count : null}</p>
+                <p>
+                    <span className="local_time">{(event && event.local_time) ? event.local_time : null} - </span>
+                    <span className="local_date">{(event && event.local_date) ? event.local_date : null}</span>
+                </p>
+                 <p className="name">{(event && event.name) ? event.name : null}</p>
+              
+                <p className="groupName">GROUP: {(event && event.group && event.group.name) ? event.group.name : null}</p>
+                <p className="yes_rsvp_count">{(event && event.yes_rsvp_count) ? event.yes_rsvp_count : null}
+                    {(event && event.yes_rsvp_count) ? " people are going" : ""}</p>
            
                 {this.state.showDetails &&
                 <div className="show_details">

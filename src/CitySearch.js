@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getSuggestions } from './api.js';
 
+
 class CitySearch extends Component {
     
     state = {
