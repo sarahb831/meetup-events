@@ -17,8 +17,8 @@ module.exports.getAccessToken = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': '*',
-    //  'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Origin':  'https://sarahb831.github.io',
+      'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify({
       access_token: info.data.access_token,
@@ -31,7 +31,7 @@ module.exports.getRefreshToken =async (event) => {
 
   const MEETUP_OAUTH_URL = 'https://secure.meetup.com/oauth2/access'
   + '?client_id=1pcniov4vgu7t6ni21bgqi5p2t'
-  + '&client_secret=6rn3iu84a6g3397hifrqv1dpsa'x 
+  + '&client_secret=6rn3iu84a6g3397hifrqv1dpsa' 
   + '&grant_type=refresh_token'
   + '&refresh_token=' + event.pathParameters.code;
   const info = await axios.post(MEETUP_OAUTH_URL);
@@ -39,8 +39,8 @@ module.exports.getRefreshToken =async (event) => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': '*',
-    //  'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Origin': 'https://sarahb831.github.io',
+      'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify({
       access_token: info.data.access_token,
