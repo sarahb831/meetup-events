@@ -17,7 +17,7 @@ module.exports.getAccessToken = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin':  'https://sarahb831.github.io',
+      'Access-Control-Allow-Origin':  '*',
       'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify({
@@ -39,7 +39,7 @@ module.exports.getRefreshToken =async (event) => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'https://sarahb831.github.io',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify({

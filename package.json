@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://sarahb831.github.io/meetup-events",
   "dependencies": {
+    "atatus-js": "^3.1.1",
     "axios": "^0.19.0",
     "global": "^4.4.0",
     "http-server": "^0.11.1",
