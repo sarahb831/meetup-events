@@ -42,7 +42,6 @@ describe('<App /> integration', () => {
   test('change state after get number of events to display', () => {
     const AppWrapper = mount(<App />);
     const spy = jest.spyOn(AppWrapper.instance(), 'updateNumberOfEvents');
-    //AppWrapper.instance().updateNumberOfEvents = jest.fn();
     AppWrapper.instance().forceUpdate();
     const NumberOfEventsWrapper = AppWrapper.find('.number-input');
     const eventObject = { target: { value: 3}};

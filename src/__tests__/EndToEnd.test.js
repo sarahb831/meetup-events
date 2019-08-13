@@ -6,11 +6,7 @@ describe('show/hide an event details', () => {
     let browser;
     let page;
     beforeAll( async () => {
-        browser = await puppeteer.launch({
-         /*   headless: false,
-            slowMo: 100
-            */
-        });
+        browser = await puppeteer.launch();
         page = await browser.newPage();
         await page.goto('http://localhost:3000');
         await page.waitForSelector('.Event');
@@ -37,41 +33,3 @@ describe('show/hide an event details', () => {
         expect(extra).toBeNull();
     });
 });
-/*
-describe('filter events by city', () => {
-
-    let browser;
-    let page;
-    beforeAll( async () => {
-        browser = await puppeteer.launch({
-        });
-        page = await browser.newPage();
-        await page.goto('http://localhost:3000');
-    });
-
-    afterAll( () => {
-        browser.close();
-    });
-
-    test('by default, when user hasn’t searched for a city, show upcoming events based on the user’s location', async () => {
-        const event = await page.waitForSelector('.Event');
-        expect(event).toBeDefined();
-    });
-
-    test('user should see a list of suggestions when they search for a city', async ()  => {
-        await page.waitForSelector('.CitySearch .city');
-        await page.type('.city', 'Munich');
-        const suggestions = await page.$('.suggestions li');
-        expect(suggestions).toHaveLength(2);
-    });
-
-    test('User can select a city from the suggested list', async () => {
-        await page.waitForSelector('.CitySearch .city');
-        await page.type('.city', 'Munich');
-       // const suggestions = await page.$('.suggestions li');
-        await page.click('.suggestions li');
-        const city = await page.$('.city');
-        expect(city).toBe('Munich, Germany');
-    })
-});
-*/
