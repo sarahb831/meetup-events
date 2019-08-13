@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
+import { ErrorAlert } from  './Alert';
 
 class NumberOfEvents extends Component {
    
     state = {
         numberOfEvents: 32,
+        infoText: '',
     }
   
     handleInputChanges = async (event) => {
         event.preventDefault();
         let value = event.target.value;
         value = isNaN(value) ? this.state.numberOfEvents : value;
+        if (value < 1) {
+            this.setState({
+                infoText: 'Number should be at least 1',
+            });
+        } else {
+            this.setState({
+                infoText: '',
+            });
+        }
         this.setState({ numberOfEvents: value });
         await this.props.updateNumberOfEvents(value);
     }
@@ -17,6 +28,7 @@ class NumberOfEvents extends Component {
     render() {
         return (
             <div className="NumberOfEvents">
+                <ErrorAlert text = {this.state.infoText} />
                 <span>Show </span>
                   <input
                     type="text"
