@@ -50,16 +50,10 @@ defineFeature(feature, test => {
         let EventWrapper;
     	given('the user is viewing details for an event', () => {
             EventWrapper = shallow(< Event />);
-            //AppWrapper.update();
-            //expect(AppWrapper.find('.Event')).toHaveLength(mockEventsSingle.events.length);
-            //expect(AppWrapper.find('.Event .show_details').at(0)).toHaveLength(0);
-            //expect(AppWrapper.find('.Event .details-button').at(0)).toHaveLength(1);
-            //AppWrapper.find('.Event .details-button').at(0).simulate('click');
             EventWrapper.find('.Event .details-button').simulate('click');
     	});
 
     	when('the user selects to hide details for the event', () => {
-           // AppWrapper.find('.Event details-button').at(0).simulate('click');
            EventWrapper.find('.Event .details-button').simulate('click');
     	});
 
