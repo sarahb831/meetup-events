@@ -8,7 +8,7 @@ class CitySearch extends Component {
     state = {
         query: '',
         suggestions: [],
-        infoText: '',
+        infoText: ' ',
     }
 
     handleInputChanges = (event) => {
@@ -22,7 +22,7 @@ class CitySearch extends Component {
                 });
             } else {
                 this.setState({
-                    infoText: '',
+                    infoText: ' ',
                 });
             }
         });

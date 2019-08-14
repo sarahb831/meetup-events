@@ -5,7 +5,7 @@ class NumberOfEvents extends Component {
    
     state = {
         numberOfEvents: 32,
-        infoText: '',
+        infoText: ' ',
     }
   
     handleInputChanges = async (event) => {
@@ -18,7 +18,7 @@ class NumberOfEvents extends Component {
             });
         } else {
             this.setState({
-                infoText: '',
+                infoText: ' ',
             });
         }
         this.setState({ numberOfEvents: value });
