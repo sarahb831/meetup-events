@@ -22,7 +22,7 @@ class CitySearch extends Component {
                 });
             } else {
                 this.setState({
-                    infoText: ' ',
+                    infoText: '',
                 });
             }
         });
