@@ -82,6 +82,12 @@ async function getOrRenewAccessToken(type, key) {
 
     // use Axios to make GET request to endpoint
     const tokenInfo = await axios.get(url);
+    if (tokenInfo.statusCode !== 200 && type ==='renew') {
+        console.log('Renew status code:', tokenInfo.statusCode);
+        // redirect to Meetup API to get new auth code
+        window.location.href='https://secure.meetup.com/oauth2/authorize?client_id=1pcniov4vgu7t6ni21bgqi5p2t&response_type=code&redirect_uri=https://sarahb831.github.io/meetup-events/';
+        return null;
+    }
 
     // save tokens to local storage with timestamp
     localStorage.setItem('access_token', tokenInfo.data.access_token);
@@ -100,7 +106,7 @@ function getAccessToken() {
         const searchParams = new URLSearchParams(window.location.search); // check for auth code in url
         const code = searchParams.get('code');
 
-        if (!code) {  // redirect to MeetupAPI to get auth code
+        if (!code) {  // redirect to Meetup API to get auth code
             window.location.href='https://secure.meetup.com/oauth2/authorize?client_id=1pcniov4vgu7t6ni21bgqi5p2t&response_type=code&redirect_uri=https://sarahb831.github.io/meetup-events/';
             return null;
         }
