@@ -43,9 +43,9 @@ class App extends Component {
             <br></br>
         </Navbar>
        
-          <CitySearch updateEvents={this.updateEvents} />
+        <CitySearch updateEvents={this.updateEvents} />
       
-          <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
+        <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
        
         <EventList events={this.state.events}/>
       </div>

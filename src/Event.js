@@ -9,7 +9,7 @@ class Event extends Component {
     handleDetailsButtonClicked = () => {
         this.setState( { showDetails: !this.state.showDetails });
     }
-  
+
     render() {
         const { event } = this.props;
         return (
