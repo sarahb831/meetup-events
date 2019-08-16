@@ -107,3 +107,11 @@ input[type="text"], input[type="number"] {
 .EventList {
   margin-top: 60px;
 }
+
+.Alert {
+  height: 27px;
+}
+
+#alert {
+  height: 25px;
+}
