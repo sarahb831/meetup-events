@@ -5,6 +5,8 @@ import CitySearch from  './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from  './api';
 import axios from 'axios';
+import moment from 'moment';
+import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import Navbar from 'react-bootstrap/Navbar';
 
 class App extends Component {
@@ -34,6 +36,31 @@ class App extends Component {
     await getEvents(this.state.lat, this.state.lon, numberOfEvents).then(events => this.setState({ events }));
   }
 
+  countEventsOnADate = (date) => {
+    let count = 0;
+    for (let i=0; i < this.state.events.length; i+=1) {
+      if (this.state.events[i].local_date === date) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  getData = () => {
+    const next7Days = []; //create empty array for next 7 days of data
+    const currentDate = moment();
+
+    // loop for next 7 days
+    for (let i=0; i<7; i+=1) {
+      currentDate.add(1, 'days');
+      const dateString = currentDate.format('YYYY-MM-DD');
+      const count=this.countEventsOnADate(dateString);
+      console.log('dateString:',dateString,' count: ',count);
+      next7Days.push({ date:dateString, number:count });
+    }
+    return next7Days;
+  }
+
   render() {
     return (
       <div className="App">
@@ -46,7 +73,18 @@ class App extends Component {
         <CitySearch updateEvents={this.updateEvents} />
       
         <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
-       
+        <p><br/>Events For Next 7 Days</p>
+        <ResponsiveContainer height={400}>
+          <ScatterChart 
+            margin={{ right: 20, bottom: 20, left: 20 }}>
+            <CartesianGrid />
+            <XAxis type="category" dataKey="date" name="date" />
+            <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+            <Scatter data={this.getData()} fill="#8e627f" />
+          </ScatterChart>
+        </ResponsiveContainer>
+
         <EventList events={this.state.events}/>
       </div>
     );
