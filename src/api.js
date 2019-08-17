@@ -51,7 +51,7 @@ async function getEvents(lat=null, lon=null, numberToDisplay) {
         const events = localStorage.getItem('lastEvents');
         return JSON.parse(events);
     }
-    
+
     const token = await getAccessToken();
     if (token) {
         let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
@@ -94,7 +94,6 @@ async function getOrRenewAccessToken(type, key) {
     // check for valid response
     if (!tokenInfo || (tokenInfo.statusCode !== 200 && type ==='renew')) {
         //redirect to Meetup API to get new auth code
-        console.log("invalid token");
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('last_saved_time');
@@ -119,7 +118,6 @@ function getAccessToken() {
     const expiredToken = Date.now() - lastSavedTime >= 3600000;
 
     if (expiredToken) {
-        console.log("expired token");
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('last_saved_time');
