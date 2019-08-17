@@ -50,7 +50,7 @@ class App extends Component {
     const next7Days = []; //create empty array for next 7 days of data
     const currentDate = moment();
 
-    // loop for next 7 days
+    // loop for next 7 days of events
     for (let i=0; i<7; i+=1) {
       currentDate.add(1, 'days');
       const dateString = currentDate.format('YYYY-MM-DD');
@@ -64,16 +64,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar bg="dark" variant="dark" fixed="top"
+        <div id="navbar"
           className="sticky-navbar">
-            <Navbar.Brand>Meetup Events</Navbar.Brand>
-            <br></br>
-        </Navbar>
-       
-        <CitySearch updateEvents={this.updateEvents} />
-      
-        <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
-        <p><br/>Events For Next 7 Days</p>
+          <h1>Meetup Events</h1>    
+          <CitySearch updateEvents={this.updateEvents} />
+          <NumberOfEvents updateNumberOfEvents = {this.updateNumberOfEvents} numberOfEvents={this.state.numberOfEvents}/>
+        </div>
+        <div className="content">
+        <p>Events For Next 7 Days</p>
         <ResponsiveContainer height={400}>
           <ScatterChart 
             margin={{ right: 20, bottom: 20, left: 20 }}>
@@ -86,6 +84,7 @@ class App extends Component {
         </ResponsiveContainer>
 
         <EventList events={this.state.events}/>
+        </div>
       </div>
     );
   }
