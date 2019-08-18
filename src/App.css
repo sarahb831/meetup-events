@@ -1,10 +1,32 @@
 .App {
   text-align: center;
-  padding: 2% 5%;
 }
 
 .App * {
   box-sizing: border-box;
+}
+
+@media all and (max-width: 500px) {
+  h1 {
+    font-size: 20px;
+  }
+}
+
+div#navbar.sticky-navbar {
+  position: fixed;
+  top: 0;
+  padding: 10px;
+  width: 100%;
+  z-index: 10;
+  background-color: #d1b9e9;
+  overflow: hidden;
+}
+
+.content {
+  margin-top: 200px;
+  padding: 10px;
+  z-index: 5;
+ background-color: #d1ddf1;
 }
 
 ul {
@@ -34,7 +56,6 @@ input[type="text"], input[type="number"] {
 .CitySearch {
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
 }
 
 .suggestions {
@@ -55,7 +76,6 @@ input[type="text"], input[type="number"] {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-
 
 .suggestions > li:hover {
   background-color: #BCDCDB;
@@ -100,7 +120,7 @@ input[type="text"], input[type="number"] {
 
 .number-of-events {
   width: 80px;
-  margin: 20px 0 50px;
+  margin: 20px 20px 20px;
   text-align: right;
 }
 

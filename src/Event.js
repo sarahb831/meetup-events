@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip, } from 'recharts';
 
 class Event extends Component {
 
@@ -9,9 +10,19 @@ class Event extends Component {
     handleDetailsButtonClicked = () => {
         this.setState( { showDetails: !this.state.showDetails });
     }
+    getAttendance = (event) => {
+        const rsvps = event.yes_rsvp_count;
+        const freeSlots = event.rsvp_limit - rsvps;
+        const attendance = [
+            { name: 'Reservations', value: rsvps},
+            { name: 'Free Slots', value: freeSlots }
+        ];
+        return attendance;
+    }
 
     render() {
         const { event } = this.props;
+       
         return (
             <div className="Event">
                 <p>
@@ -21,9 +32,28 @@ class Event extends Component {
                  <p className="name">{(event && event.name) ? event.name : null}</p>
               
                 <p className="groupName">GROUP: {(event && event.group && event.group.name) ? event.group.name : null}</p>
-                <p className="yes_rsvp_count">{(event && event.yes_rsvp_count) ? event.yes_rsvp_count : null}
+                {event && event.rsvp_limit &&
+                <ResponsiveContainer height={150}>
+                    <PieChart> 
+                        <Pie label 
+                            dataKey="value" 
+                            isAnimationActive={false} 
+                            data={this.getAttendance(event)} 
+                            cx={100}  
+                            outerRadius={40} 
+                            fill="#0088fe" >
+                            <Cell key="cell-0" fill="#146eb4"/>
+                            <Cell key="cell-1" fill="#552867"/>
+                        </Pie>
+                        <Tooltip />
+                        <Legend verticalAlign="bottom" align="left" />
+                    </PieChart>
+                </ResponsiveContainer>
+                }
+                {event && !event.rsvp_limit &&
+                    <p className="yes_rsvp_count">{(event && event.yes_rsvp_count) ? event.yes_rsvp_count : null}
                     {(event && event.yes_rsvp_count) ? " people are going" : ""}</p>
-           
+                }
                 {this.state.showDetails &&
                 <div className="show_details">
                     <p className="description">{(event && event.description) ? event.description : null}</p>
