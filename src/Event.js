@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ResponsiveContainer, PieChart, Pie, Legend, Tooltip, } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip, } from 'recharts';
 
 class Event extends Component {
 
@@ -22,6 +22,7 @@ class Event extends Component {
 
     render() {
         const { event } = this.props;
+       
         return (
             <div className="Event">
                 <p>
@@ -40,8 +41,12 @@ class Event extends Component {
                             data={this.getAttendance(event)} 
                             cx={100}  
                             outerRadius={40} 
-                            fill="#a67d98" />
+                            fill="#0088fe" >
+                            <Cell key="cell-0" fill="#146eb4"/>
+                            <Cell key="cell-1" fill="#552867"/>
+                        </Pie>
                         <Tooltip />
+                        <Legend verticalAlign="bottom" align="left" />
                     </PieChart>
                 </ResponsiveContainer>
                 }

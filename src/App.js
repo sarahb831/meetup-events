@@ -7,7 +7,6 @@ import { getEvents } from  './api';
 import axios from 'axios';
 import moment from 'moment';
 import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import Navbar from 'react-bootstrap/Navbar';
 
 class App extends Component {
    
@@ -79,7 +78,7 @@ class App extends Component {
             <XAxis type="category" dataKey="date" name="date" />
             <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#8e627f" />
+            <Scatter data={this.getData()} fill="#552867" />
           </ScatterChart>
         </ResponsiveContainer>
 

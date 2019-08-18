@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  padding: 2% 5%;
   
 }
 
@@ -20,16 +19,15 @@ div#navbar.sticky-navbar {
   padding: 10px;
   width: 100%;
   z-index: 10;
-  /*background-color: "#c5aabc";*/
-  background-color: #8cb098;
+  background-color: #d1b9e9;
   overflow: hidden;
 }
 
 .content {
   margin-top: 200px;
-  padding: 20px;
+  padding: 10px;
   z-index: 5;
- /* background-color: #8cb098;*/
+ background-color: #d1ddf1;
 }
 
 ul {
