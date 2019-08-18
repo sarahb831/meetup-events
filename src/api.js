@@ -134,14 +134,9 @@ function getAccessToken() {
         return getOrRenewAccessToken('get', code);
     }
 
-    //const lastSavedTime = localStorage.getItem('last_saved_time');
     if (accessToken && (Date.now() - lastSavedTime < 3600000)) {
         return accessToken;
     }
-
-    // if access_token is expired try to renew it using refresh_token
-   // const refreshToken = localStorage.getItem('refresh_token');
-   // return getOrRenewAccessToken('renew', refreshToken);
 };
 
 export { getSuggestions, getEvents };
