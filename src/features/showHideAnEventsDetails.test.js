@@ -1,8 +1,7 @@
 import React from 'react';
 import { mount, shallow } from  'enzyme';
 import App from  '../App';
-import EventList from '../EventList';
-import Event from  '../Event';
+import Event from  '../components/events/Event';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { mockEventsSingle } from  '../mock-events';
 

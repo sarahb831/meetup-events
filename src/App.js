@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import EventList from  './EventList';
-import CitySearch from  './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
-import { getEvents } from  './api';
+import EventList from  './components/events/EventList';
+import CitySearch from  './components/city-search/CitySearch';
+import NumberOfEvents from './components/number-of-events/NumberOfEvents';
+import { getEvents } from  './components/api/api';
 import axios from 'axios';
 import moment from 'moment';
 import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
@@ -54,7 +54,6 @@ class App extends Component {
       currentDate.add(1, 'days');
       const dateString = currentDate.format('YYYY-MM-DD');
       const count=this.countEventsOnADate(dateString);
-      console.log('dateString:',dateString,' count: ',count);
       next7Days.push({ date:dateString, number:count });
     }
     return next7Days;

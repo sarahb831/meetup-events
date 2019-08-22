@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Event from './Event.js';
-import { WarningAlert } from  './Alert';
+import { WarningAlert } from  '../alert/Alert';
 
 
 export default class EventList extends Component {
