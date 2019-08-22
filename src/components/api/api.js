@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { mockEventsSingle } from "./mock-events";
+import { mockEventsSingle } from '../../mock-events';
 
 async function getSuggestions(query) {
     if (window.location.href.startsWith('http://localhost')) {

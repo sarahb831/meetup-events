@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
-import EventList from  '../EventList';
-import CitySearch from  '../CitySearch';
-import NumberOfEvents from  '../NumberOfEvents';
+import EventList from  '../components/events/EventList';
+import CitySearch from  '../components/city-search/CitySearch';
+import NumberOfEvents from  '../components/number-of-events/NumberOfEvents';
 import { mockEventsSingle, mockEvents } from '../mock-events';
 
 describe('<App /> component', () => {

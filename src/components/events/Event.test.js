@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Event from '../Event.js';
+import Event from './Event.js';
 
 
 describe('<Event /> component', () => {
@@ -16,7 +16,6 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.groupName')).toHaveLength(1);
         expect(EventWrapper.find('.local_date')).toHaveLength(1);
         expect(EventWrapper.find('.local_time')).toHaveLength(1);
-        expect(EventWrapper.find('.yes_rsvp_count')).toHaveLength(1);
         expect(EventWrapper.find('description')).toHaveLength(0);
         expect(EventWrapper.find('.venueAddress_1')).toHaveLength(0);
         expect(EventWrapper.find('.venueAddress_2')).toHaveLength(0);
@@ -30,7 +29,6 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.groupName')).toHaveLength(1);
         expect(EventWrapper.find('.local_date')).toHaveLength(1);
         expect(EventWrapper.find('.local_time')).toHaveLength(1);
-        expect(EventWrapper.find('.yes_rsvp_count')).toHaveLength(1);
         expect(EventWrapper.find('.description')).toHaveLength(1);
         expect(EventWrapper.find('.venueAddress_1')).toHaveLength(1);
         expect(EventWrapper.find('.venueAddress_2')).toHaveLength(1);
@@ -45,7 +43,6 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.groupName')).toHaveLength(1);
         expect(EventWrapper.find('.local_date')).toHaveLength(1);
         expect(EventWrapper.find('.local_time')).toHaveLength(1);
-        expect(EventWrapper.find('.yes_rsvp_count')).toHaveLength(1);
         expect(EventWrapper.find('.description')).toHaveLength(0);
         expect(EventWrapper.find('.venueAddress_1')).toHaveLength(0);
         expect(EventWrapper.find('.venueAddress_2')).toHaveLength(0);
